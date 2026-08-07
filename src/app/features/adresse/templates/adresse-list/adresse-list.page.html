@@ -1,0 +1,46 @@
+<section class="mx-auto max-w-4xl p-6">
+  <div class="mb-6">
+    <h2 class="text-2xl font-bold text-slate-800">Mes adresses</h2>
+    <p class="mt-1 text-sm text-slate-500">
+      Liste des adresses enregistrées
+    </p>
+  </div>
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    @for (adresse of adresses(); track adresse.id) {
+      <article
+        class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+      >
+        <div class="mb-4 flex items-center justify-between">
+          <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+            Adresse #{{ adresse.id }}
+          </span>
+
+          <span class="text-sm text-slate-400">
+            N° {{ adresse.numero }}
+          </span>
+        </div>
+
+        <p class="text-base font-semibold text-slate-800">
+          {{ adresse.numero }} {{ adresse.rue }}
+        </p>
+
+        @if (adresse.complement) {
+          <p class="mt-1 text-sm text-slate-500">
+            {{ adresse.complement }}
+          </p>
+        }
+
+        <div class="mt-4 border-t border-slate-100 pt-4">
+          <p class="text-sm font-medium text-slate-600">
+            {{ adresse.postalCode }} {{ adresse.ville }}
+          </p>
+        </div>
+      </article>
+    } @empty {
+      <div class="col-span-full rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+        <p class="text-slate-500">Aucune adresse disponible.</p>
+      </div>
+    }
+  </div>
+</section>
